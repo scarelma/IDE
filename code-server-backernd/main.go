@@ -12,6 +12,7 @@ func setupRoutes(app *fiber.App) {
 
 func main() {
 	app := fiber.New()
+	// setup middleware here
 	setupRoutes(app)
 	app.Listen(":3000")
 }

@@ -5,5 +5,7 @@ import (
 )
 
 func ServerHealth(c *fiber.Ctx) error {
+
+	// This function checks health of each individual server on which code will run.
 	return nil
 }
