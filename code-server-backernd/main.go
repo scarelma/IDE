@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Lavender-Laneige/IDE/code-server-backernd/routes"
+	"github.com/Lavender-Laneige/IDE/code-server-backernd/pkg/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
