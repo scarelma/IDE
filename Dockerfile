@@ -17,4 +17,4 @@ RUN go build -o /IDE
 
 EXPOSE 8080
 
-CMD [ "/IDE" ]
+CMD [ "./IDE" ]
