@@ -3,7 +3,9 @@ package routes
 import (
 	"fmt"
 
+	"github.com/Lavender-Laneige/IDE/code-reciever-backernd/pkg/executer"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/internal/uuid"
 )
 
 type request struct {
@@ -25,7 +27,8 @@ func CodeHandler(c *fiber.Ctx) error {
 		})
 	}
 	fmt.Println(body)
-	// write this to file
+	fileName := uuid.UUID
+	executer.CreateFile(fileName)
 
 	// execute that file through python file name >> and store its output to a file again
 
