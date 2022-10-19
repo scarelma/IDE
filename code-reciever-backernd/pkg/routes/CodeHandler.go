@@ -2,9 +2,15 @@ package routes
 
 import (
 	"fmt"
+	"log"
 
+	"github.com/Lavender-Laneige/IDE/code-reciever-backernd/pkg/executer"
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 )
+
+var CodeExtension string
+var OutputExtension string
 
 type request struct {
 	Code  string `json:"code"`
@@ -16,28 +22,45 @@ type response struct {
 }
 
 func CodeHandler(c *fiber.Ctx) error {
-	var output string
+	CodeExtension = "py"
 
+	var output string
 	body := new(request)
-	if err := c.BodyParser(&body); err != nil {
+	temp := c.Body()
+	fmt.Println(string(temp))
+	if err := c.BodyParser(body); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error": "cannot parse JSON",
 		})
 	}
-	fmt.Println(body)
-	// write this to file
+
+	fileName := uuid.New().String()
+
+	// this will be taken from env variable
+	extension := CodeExtension
 
 	// execute that file through python file name >> and store its output to a file again
-
+	f, err := executer.CreateFile(fileName, extension)
+	if err != nil {
+		log.Panic(err)
+	}
 	// read that file and return it as output
+	executer.WriteFile(f, body.Code)
+
+	// execute that file
+	out, err := executer.ExecuteFile(fileName, CodeExtension, OutputExtension, body.Input)
+	if err != nil {
+		output = err.Error()
+	} else {
+		output = out
+	}
 
 	// if all this is done then make a default timeout for the execution to be say 30s so that no one can abuse the system
+	executer.DeleteFile(fileName, extension)
 
-	output = body.Code
-
+	// output = body.Code
 	resp := response{
 		Output: output,
 	}
-
 	return c.Status(fiber.StatusOK).JSON(resp)
 }
