@@ -17,16 +17,18 @@ func setupRoutes(app *fiber.App) {
 
 func loadEnvVariables() {
 	routes.CodeExtension = os.Getenv("CODE_EXTENSION")
-
+	routes.OutputExtension = os.Getenv("OUTPUT_EXTENSION")
+	routes.Script = os.Getenv("SCRIPT")
 }
 
 func main() {
 
 	app := fiber.New()
+	loadEnvVariables()
 	// setup middleware here
 	app.Use(cors.New())
 	app.Use(logger.New())
 	setupRoutes(app)
-	log.Panic(app.Listen("localhost:3001"))
+	log.Panic(app.Listen(":3001"))
 
 }

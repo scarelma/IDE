@@ -1,0 +1,22 @@
+version: "3"
+services:
+  java:
+    image: jrb:1
+    ports:
+      - "3001:3001"
+  golang:
+    image: gorb:1
+    ports:
+      - "3002:3001"
+  cplusplus:
+    image: crb:1
+    ports:
+      - "3003:3001"
+  python:
+    image: prb:1
+    ports:
+      - "3004:3001"
+  javascript:
+    image: jsrb:1
+    ports:
+      - "3005:3001"
