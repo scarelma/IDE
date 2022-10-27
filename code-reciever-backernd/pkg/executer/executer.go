@@ -13,7 +13,7 @@ import (
 
 func check(e error) {
 	if e != nil {
-		panic(e)
+		log.Println(e)
 	}
 }
 
@@ -23,13 +23,13 @@ func CreateFile(fileName string, CodeExtension string) (*os.File, error) {
 
 	fullyQualifiedFileName := "main" + "." + CodeExtension // here i have change file name to main
 	if err := os.Mkdir(prePath+"/"+fileName, os.ModeDir); err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
 	// path := filepath.Join(prePath, fullyQualifiedFileName)
 	path := prePath + "/" + fileName + "/" + fullyQualifiedFileName
 	f, err := os.Create(path)
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 		f.Close()
 		return nil, err
 	}
@@ -41,9 +41,9 @@ func WriteFile(f *os.File, content string) {
 
 	_, err := f.WriteString(content)
 	if err != nil {
-		log.Panic(err)
+		log.Println(err)
 	}
-	f.Close()
+	defer f.Close()
 }
 
 // deletes a file
@@ -64,6 +64,7 @@ func DeleteFile(fileName string, extension string) error {
 	// path := filepath.Join(prePath, fileName)
 	path := prePath + "/" + fileName
 	// remove it
+	// fmt.Println("instead of removing we doing this", path)
 	err := os.RemoveAll(path)
 	if err != nil {
 		return err
@@ -74,10 +75,11 @@ func DeleteFile(fileName string, extension string) error {
 	//  one solution can be that we create 1 folder for each request and thus when execution is complete we can remove that folder so that it doesn't affect working of other users.
 }
 
-func getExecutionCode(filepath string, CodeExtension string, OutputExtension string) string {
+func getExecutionCode(script string, filepath string, CodeExtension string, OutputExtension string) string {
 	// script := os.Getenv("SCRIPT")
-	script := "python <FILENAME>.<CODE_EXTENSION>"
-	// script := "g++ <FILENAME>.<CODE_EXTENSION> -o <FILENAME>.<OUTPUT_EXTENSION> && ./<FILENAME>.<OUTPUT_EXTENSION>"
+	// script := "python /app/files/<FILENAME>/main.<CODE_EXTENSION>"
+	// script := `javac /app/files/<FILENAME>/main.java && java -cp /app/files/<FILENAME> Main`
+	// script := "g++ /app/files/<FILENAME>/main.<CODE_EXTENSION> -o /app/files/<FILENAME>/main.<OUTPUT_EXTENSION> && /app/files/<FILENAME>/main.<OUTPUT_EXTENSION>"
 	script = strings.Replace(script, "<FILENAME>", filepath, -1)
 	script = strings.Replace(script, "<CODE_EXTENSION>", CodeExtension, -1)
 	if OutputExtension != "" {
@@ -86,37 +88,45 @@ func getExecutionCode(filepath string, CodeExtension string, OutputExtension str
 	return script
 }
 
-func ExecuteFile(filename string, CodeExtension string, OutputExtension string, input string) (string, error) {
+func ExecuteFile(filename string, Script string, CodeExtension string, OutputExtension string, input string) (string, error) {
 
-	filePath := "files" + "/" + filename + "/" + "main" // here i have change file name to main
-	executionCode := getExecutionCode(filePath, CodeExtension, OutputExtension)
+	// filePath := "files" + "/" + filename + "/" + "main" // here i have changed file name to main
+	executionCode := getExecutionCode(Script, filename, CodeExtension, OutputExtension)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	outputFile := "files/" + filename + "/output.msg"
-	outputErr := "files/" + filename + "/output.err"
+	outputFile := "/app/files/" + filename + "/output.msg"
+	outputErr := "/app/files/" + filename + "/output.err"
 	mapOutput := " > " + outputFile + " 2> " + outputErr
-	fmt.Println(mapOutput)
-	cmd := exec.CommandContext(ctx, "pwsh", "-c", executionCode, mapOutput)
+	myCommand :=
+		// `" ` +
+		executionCode
+		// executionCode +
+		// ` "` +
+		// mapOutput
+
+	println(myCommand)
+	// fmt.Println(mapOutput)
+	cmd := exec.CommandContext(ctx, "/bin/sh", "-c", myCommand+mapOutput)
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
-		log.Panic(err)
+		log.Print(err)
 	}
 	go func() {
 		defer stdin.Close()
 		io.WriteString(stdin, input)
 	}()
 
-	_, err = cmd.CombinedOutput()
-
+	tempOutput, err := cmd.CombinedOutput()
 	if err != nil {
 		if err.Error() == "signal: killed" {
 			fmt.Println("handled error")
 		}
-		// fmt.Println("this is", err)
+		fmt.Println("this is", err)
 		// return "", err
 	}
-	// fmt.Println(string(out), err)
+	println(string(tempOutput))
+
 	dat1, err := os.ReadFile(outputFile)
 	check(err)
 	dat2, err := os.ReadFile(outputErr)
@@ -124,25 +134,3 @@ func ExecuteFile(filename string, CodeExtension string, OutputExtension string, 
 	return string(dat1) + string(dat2), nil
 	// return string(out), nil
 }
-
-// func main() {
-// 	filepath := "files/" + uuid.New().String()
-// 	if err := os.Mkdir(filepath, os.ModeDir); err != nil {
-// 		log.Panic(err)
-// 	}
-// 	f, _ := os.Open("files")
-// 	files, _ := f.Readdir(0)
-// 	// fmt.Println(files)
-// 	for _, v := range files {
-// 		fmt.Println(v.Name(), v.IsDir())
-// 		timeSinceCreation := time.Since(v.ModTime())
-// 		fmt.Println(timeSinceCreation)
-// 		if timeSinceCreation > time.Minute {
-// 			fmt.Println("removing")
-// 			if err := os.Remove("files/" + v.Name()); err != nil {
-// 				fmt.Println("error removing this file")
-// 			}
-
-// 		}
-// 	}
-// }
