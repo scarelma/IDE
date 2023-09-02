@@ -12,7 +12,7 @@ Docker-compose
 
 ### How to run
 1. Clone the project
-2. cd into the project directory and then in reciever directory
+2. cd into the project directory and then in reciever directory to start the project in order.
 3. Open Dockerfile and select the language you want to build the image with
    For example:
       Here I will use python
