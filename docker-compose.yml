@@ -1,22 +1,144 @@
-version: "3"
+version: "3.9"
 services:
-  java:
-    image: jrb:1
+  db:
+    image: postgres:12-alpine
+    container_name: postgres_db_ide
     ports:
-      - "3001:3001"
-  golang:
-    image: gorb:1
+      - 5432:5432
+    restart: always
+    env_file: ./postgres-db/.env
+    networks:
+      - backend-network
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  nginx:
+    build:
+      context: .
+      dockerfile: extras/Dockerfile.nginx
+    container_name: nginx_ide
     ports:
-      - "3002:3001"
-  cplusplus:
-    image: crb:1
+      - 80:80
+    volumes:
+      - ./extras/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - auth
+      - backend
+    restart: always
+    networks:
+      - backend-network
+
+  codego:
+    build:
+      context: ./code-reciever-backernd
+      dockerfile: Dockerfile.go
+    container_name: codego
+    restart: always
+    networks:
+      - backend-network
+
+  codenode:
+    build:
+      context: ./code-reciever-backernd
+      dockerfile: Dockerfile.node
+    container_name: codenode
+    restart: always
+    networks:
+      - backend-network
+
+  codejava:
+    build:
+      context: ./code-reciever-backernd
+      dockerfile: Dockerfile.java
+    container_name: codejava
+    restart: always
+    networks:
+      - backend-network
+
+  codec:
+    build:
+      context: ./code-reciever-backernd
+      dockerfile: Dockerfile.c
+    container_name: codec
+    restart: always
+    networks:
+      - backend-network
+
+  codepython:
+    build:
+      context: ./code-reciever-backernd
+      dockerfile: Dockerfile.python
+    container_name: codepython
+    restart: always
+    networks:
+      - backend-network
+
+  backend:
+    build:
+      context: ./code-server-backernd
+      dockerfile: Dockerfile
+    container_name: backend
+    depends_on:
+      - codec
+      - codenode
+      - codejava
+      - codepython
+      - codego
+
     ports:
-      - "3003:3001"
-  python:
-    image: prb:1
+      - "5000:5000"
+    restart: always
+    networks:
+      - backend-network
+
+  auth:
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+    container_name: auth-be
     ports:
-      - "3004:3001"
-  javascript:
-    image: jsrb:1
+      - "8000:8000"
+    depends_on:
+    - db
+    restart: always
+    networks:
+      - backend-network
+    volumes:
+      - ./auth/:/home/
+    env_file: ./auth/.env
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container_ide
+    restart: always
     ports:
-      - "3005:3001"
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    depends_on:
+      - db
+    networks:
+      - backend-network
+  
+  redis:
+    image: redis:latest
+    container_name: redis_ide_container
+    ports:
+      - 6379:6379
+    restart: always
+    networks:
+      - backend-network
+    volumes:
+      - redis-data:/data
+
+
+
+networks:
+  backend-network:
+
+
+volumes:
+  pgdata:
+  redis-data:
+

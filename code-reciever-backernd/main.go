@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Lavender-Laneige/IDE/code-reciever-backernd/pkg/routes"
+	"github.com/scarelma/IDE/code-reciever-backernd/pkg/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"

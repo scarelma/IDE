@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Lavender-Laneige/IDE/code-reciever-backernd/pkg/executer"
+	"github.com/scarelma/IDE/code-reciever-backernd/pkg/executer"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 )

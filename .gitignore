@@ -4,6 +4,10 @@
 *.dll
 *.so
 *.dylib
+*.pyc
+*.log
+.vscode-server
+.env
 
 # Test binary, built with `go test -c`
 *.test

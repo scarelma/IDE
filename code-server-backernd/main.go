@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/Lavender-Laneige/IDE/code-server-backernd/pkg/language"
-	"github.com/Lavender-Laneige/IDE/code-server-backernd/pkg/routes"
+	"github.com/scarelma/IDE/code-server-backernd/pkg/language"
+	"github.com/scarelma/IDE/code-server-backernd/pkg/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"

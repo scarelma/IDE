@@ -1,0 +1,96 @@
+
+.navbar{
+    height: 70px;
+    position: fixed !important;
+    top: 0px;
+    left: 0px;
+    /* background-color: #52cecc; */
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+    /* box-shadow: 0 2px 4px 0 rgba(0,0,0,.2); */
+    
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    color: black;
+    margin-left: 5%;
+}
+
+.nav-btns{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    max-width: 350px;
+    font-size: 20px;
+    justify-content: space-around;
+    font-weight: 600;
+    margin-right: 10%;
+}
+
+.nav-btns a{
+    /* color: #1cb6dc; */
+    /* color: black; */
+    color: white;
+    text-decoration: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 10px 20px;
+    background-color: #2b50a1;
+    border-radius: 20px;
+}
+
+.nav-btns a:hover{
+    color: white !important;
+}
+
+
+.logo-img{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 20px;
+}
+
+.menu-icon-mobile{
+    display: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 980px) {
+    .menu-icon-mobile{
+        display: block;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    .nav-btns{
+        display: none;
+    }
+    .logo{
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .logo h2{
+        font-size: 20px;
+        margin-top: 10px;
+        margin-left: 3px;
+    }
+    .logo{
+        width: 270px !important;
+        margin-left: 5px;
+    }
+    .logo-img img{
+        width: 30px !important;
+    }
+
+    .logo-img{
+        margin-right : 0px !important;
+    }
+
+}

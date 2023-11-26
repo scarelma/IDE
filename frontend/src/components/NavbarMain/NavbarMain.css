@@ -1,0 +1,125 @@
+.logo{
+    display: flex;
+    flex-direction: row;
+    color: black;
+    margin-left: 1.5%;
+    color: white;
+    width: 500px;
+}
+
+.logo h4{
+    margin-top: 13px;
+}
+
+.logo-img{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 20px;
+}
+
+.logo-img img{
+    border-radius: 50%;
+}
+
+.navbar-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 60px;
+    position: fixed !important;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #2b50a1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 10;
+}
+
+.username-div-wrapper{
+    height: 60px;
+    display: flex;
+    width: 200px;
+    align-items: center;
+    margin-right: 50px;
+    color: white;
+}
+
+.username-div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    cursor: pointer;
+    text-align: right;
+    justify-content: flex-end;
+}
+
+.username-div svg{
+    margin-top: 5px; 
+    margin-right: 10px;
+}
+
+.logo svg{
+    font-size: 25px;
+    margin-right: 5%;
+    margin-top: 17px;
+}
+
+.sidebar{
+    position: fixed;
+    height: calc(100vh - 60px);
+    width: 53px;
+    top: 60px;
+    background-color: #d6e0f5;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    z-index: 9;
+    bottom: 0px;
+}
+
+.sidebar svg{
+    font-size: 20px;
+    margin-top: 17px;
+    color: #38393c;
+}
+
+
+.sidebar-icons-2{
+    font-size: 15px;
+    color: #2b50a1;
+}
+
+.sidebar-items{
+    display: flex;
+    margin-top: 40px !important;
+    flex-direction: row;
+    color: #2b50a1;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.sidebar-items h5{
+    margin-top: 14px;
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 550px) {
+    .username-div-wrapper h5{
+        display: none;
+    }
+    .username-div-wrapper{
+        width: 10%;
+        margin-right: 0px;
+    }
+
+    .logo-navbar-main{
+        width: 80% !important;
+    }
+
+    .logo-navbar-main h4{
+        font-size: 17px;
+        margin-left: 10px;
+        margin-top: 17px;
+    }
+}
