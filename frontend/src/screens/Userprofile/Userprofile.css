@@ -1,0 +1,82 @@
+.profile-card-1{
+    height: 300px;
+    width: 300px;
+    margin-top: 80px;
+    margin-left: 80px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-cards{
+    height: 100%;
+    width: calc(100vw - 70px);
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-card-2{
+    height: 57%;
+    width: 50%;
+    margin-top: 80px;
+    background-color: white;
+    margin-left: 80px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-card-1 svg{
+    font-size: 150px;
+    color: #2b50a1;
+    margin-top: 40px;
+}
+
+.profile-card-1 h5{
+    margin-top: 10px;
+}
+
+.profile-table{
+    width: 100%;
+    height: 80%;
+    margin-top: 5%;
+    text-align: left;
+    margin-left: 10%;
+}
+
+@media screen and (max-width: 900px) {
+    .profile-cards{
+        flex-direction: column;
+    }
+
+    .profile-card-1{
+        width: 250px;
+        height: 250px;
+    }
+
+    .profile-card-2{
+        width: 85%;
+        margin-top: 25px;
+        height: 250px;
+        margin-left: calc(60px + 7.5%);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .profile-card-1{
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile-card-1 svg{
+        margin-top: 5px;
+    }
+
+    .profile-table td, .profile-table td h5 {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .profile-table{
+        margin-left: 5px;
+    }
+}
+

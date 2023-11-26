@@ -1,0 +1,125 @@
+.AuthPage{
+    width: 100vw;
+    overflow: hidden;
+    height: 100vh;
+    /* background-color: #d6e0f5; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+}
+
+.AuthCard{
+    width: 70%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 85vh;
+    display: flex;
+    flex-direction: row;
+    box-shadow: #2b50a1;
+    border-radius: 16px;
+}
+
+.image-div{
+    width: 50%;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.image-div img{
+    height: 100%;
+}
+
+.form-div{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-bg{
+    position: absolute;
+    top: 20%;
+    height: 60% !important;
+    left: 20%;
+    width: 30%;
+}
+
+.login-signup-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60%;
+    margin-top: 20px;
+}
+
+
+.login-signup-btns h4{
+    cursor: pointer;
+    color: gray;
+    padding: 5px 15px;
+}
+
+.selected-btn{
+    color: #2b50a1 !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid #2b50a1;
+}
+
+.form-header{
+    color: #2b50a1;
+}
+
+.signup-form, .login-form{
+    padding: 3%;
+}
+
+.signup-form .form-outline, .login-form .form-outline {
+    width: 70%;
+    min-width: 270px !important;
+    border-radius: 50%;
+    margin: 15px auto;
+}
+
+.signup-form button, .login-form button{
+    width: 70%;
+    min-width: 270px !important;
+}
+
+.forgot-password{
+    color: #2b50a1;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.shape-bg{
+    width: 110%;
+}
+
+@media screen and (max-width: 1000px){
+    .image-div{
+        display: none;
+    }
+
+    .AuthCard{
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .form-div{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .AuthCard{
+        width: 90%;
+    }
+
+    .login-form{
+        padding: 0px;
+    }
+}

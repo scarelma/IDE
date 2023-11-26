@@ -22,7 +22,7 @@ This project and everyone participating in it is governed by the [Code of Conduc
 ## I don't want to read this whole thing I just have a question!!!
 
 > **Note:** Please don't file an issue to ask a question.
-- You'll get faster results by using [Github Discussions, the official IDE message board](https://github.com/Lavender-Laneige/IDE/discussions)
+- You'll get faster results by using [Github Discussions, the official IDE message board](https://github.com/scarelma/IDE/discussions)
 
 ## How Can I Contribute?
 

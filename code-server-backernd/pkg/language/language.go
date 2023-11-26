@@ -19,7 +19,7 @@ func AddInitLanguages() {
 	Languages = append(Languages, language{
 		Name:            "python",
 		Id:              1,
-		URL:             "http://localhost:3004/api/v1/recievecode",
+		URL:             "http://codepython:3001/api/v1/recievecode",
 		Script:          "python3 <FILENAME>.<CODE_EXTENSION>",
 		CodeExtension:   "py",
 		OutputExtension: "",
@@ -27,7 +27,7 @@ func AddInitLanguages() {
 	Languages = append(Languages, language{
 		Name:            "c++",
 		Id:              2,
-		URL:             "http://localhost:3003/api/v1/recievecode",
+		URL:             "http://codec:3001/api/v1/recievecode",
 		Script:          "g++ <FILENAME>.<CODE_EXTENSION> -o <FILENAME>.<OUTPUT_EXTENSION> && ./<FILENAME>.<OUTPUT_EXTENSION>",
 		CodeExtension:   "cpp",
 		OutputExtension: "out",
@@ -35,7 +35,7 @@ func AddInitLanguages() {
 	Languages = append(Languages, language{
 		Name:            "java",
 		Id:              3,
-		URL:             "http://localhost:3001/api/v1/recievecode",
+		URL:             "http://codejava:3001/api/v1/recievecode",
 		Script:          "javac <FILENAME>.<CODE_EXTENSION> && java <FILENAME>",
 		CodeExtension:   "java",
 		OutputExtension: "",
@@ -43,7 +43,7 @@ func AddInitLanguages() {
 	Languages = append(Languages, language{
 		Name:            "go",
 		Id:              4,
-		URL:             "http://localhost:3002/api/v1/recievecode",
+		URL:             "http://codego:3001/api/v1/recievecode",
 		Script:          "go run <FILENAME>.<CODE_EXTENSION>",
 		CodeExtension:   "go",
 		OutputExtension: "",
@@ -51,7 +51,7 @@ func AddInitLanguages() {
 	Languages = append(Languages, language{
 		Name:            "javascript",
 		Id:              5,
-		URL:             "http://localhost:3005/api/v1/recievecode",
+		URL:             "http://codenode:3001/api/v1/recievecode",
 		Script:          "node <FILENAME>.<CODE_EXTENSION>",
 		CodeExtension:   "js",
 		OutputExtension: "",

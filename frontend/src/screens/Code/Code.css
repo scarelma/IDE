@@ -1,0 +1,26 @@
+
+.message{
+  background-color: #e9e9e9;
+}
+
+.AppofCode {
+    position: relative;
+    padding: 100px;
+}
+
+#codingArea {
+  width: 75%;
+  height: 200px;
+  font-family: monospace;
+  font-size: 1.2em;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#inputArea {
+  width: 75%;
+  height: 75px;
+  font-family: monospace;
+  font-size: 1.2em;
+  padding: 10px;
+  box-sizing: border-box;
+}

@@ -1,4 +1,4 @@
-module github.com/Lavender-Laneige/IDE/code-server-backernd
+module github.com/scarelma/IDE/code-server-backernd
 
 go 1.19
 
