@@ -26,7 +26,7 @@
     "json-loader": "^0.5.7",
     "mdb-react-ui-kit": "^7.0.0",
     "primeicons": "^6.0.1",
-    "primereact": "^9.6.2",
+    "primereact": "^9.6.4",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
