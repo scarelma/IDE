@@ -31,7 +31,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
-    "react-router-dom": "^6.15.0",
+    "react-router-dom": "^6.20.1",
     "react-scripts": "5.0.1",
     "react-tsparticles": "^2.12.2",
     "reactjs-popup": "^2.0.5",
